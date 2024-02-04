@@ -1,0 +1,118 @@
+/* basic css syntax i made up of a selector and a semicolon-separated list of declarations, with each of those declarations being made up of property-value pair */
+div.bold-text {
+    font-weight: 700;
+}
+
+/* Selectors refer to the html elements to which CSS rules apply */
+
+/* universal selector */
+
+* { /* will select elements of any type*/
+    color: purple;
+}
+
+/* type selectors (or element selector) */
+div { /*will select all elements of the given element type, syntax is just the name of the element*/
+    color: white;
+}
+/* class selectors */
+.alert-text { /* will select all elements with the given class, which is just and attribute you place on an HTML element */
+    color: red;
+}
+/* ID selectors*/
+#title { /* similar to class selectors.Difference is that an element can only have one ID. It cannot be repeated on a single page and should not contain any whitespace*/
+    background-color: red;
+}
+/* The grouping selector */
+.read, /* used to group selectors that share the same declarations to cut down on the repetition*/
+.unread {
+    color: white;
+    background-color: black;
+}
+
+.read {
+    /* several unique declarations */
+}
+
+.unread {
+    /* several unique declarations */
+}
+/* Chaning selectors */
+.subsection.header { /* used to chain elements and wanting this chained elements to have some unique rule and also contain their unique values*/
+    color: red;
+}
+
+/* Descendant combinator */
+.ancestor .contents {
+    /* some declaration */
+}
+/* 
+<div class="ancestor">
+    A
+    <div class="contents">
+        B
+        <div class="contents"> C </div>
+    </div>
+</div>
+
+<div class="contents"></div>
+D
+*/
+/* In example above the first two eleements with the contents class B and C would be selected 
+because .ancestor .contents would select an element with the class contents if it has an ancestor 
+with the class ancestor, the contents will only be selected if it is nested inside ancestor, regardless
+of how deep that nesting is */
+
+
+/* color property use several kind of values (sticks also to background-color */
+p { /* a keyword*/
+    color: red;
+}
+p { /* rgb values*/
+    color: rgb(100, 0, 127);
+}
+p { /* hex values*/
+    color: #1100ff;
+}
+p { /* hsl values*/
+    color: hsl(15, 82%, 56%);
+}
+
+/* typography basic and text-align */
+p { /* you should include a couple of fonts for security reason, the browser could not supported the font you've selected and will just use the next one*/
+    font-family: 'Times New Roman', serif; 
+    font-size: 22px; /* the value shouldn't contain whitespaces */
+    font-weight: bold; /* affect the boldness of font is the font supports it, could be a word or numerical value between 100 and 900*/
+    text-align: center;/* will align the text horizontally*/
+}
+/* image height and width */
+img { /* by default values will be the same as the actual image, if you want to adjust the size of the image without it causing it to lose it's proportions, you would use auto for the height and adjust the width */
+    height: auto; /* always include both to prevent problems */
+    width: 500px;
+}
+/* adding CSS to HTML */
+/* external */
+/* <head>
+  <link rel="stylesheet" href="styles.css">
+</head>*/
+/* you just create a link tag in head of a html file, important to specify the rel attribute
+because it specifies the relationship between the HTML file and the linked file, and in the href
+attribute insert location of css file, in this example we assume that the file is in the same directory
+as html file, */
+/* the cons of this way are:
+- it keeps out HTML and CSS separated, which results in te HTML file being smaller and making things look cleaner
+- we onyl need to edit CSS in one place, which is especially handy for websites with many pages that all share similiar styles */
+
+/* Internal CSS */
+/* with this method you can add styles withing head with style attribute, it is useful for adding unique style for certain page,
+but because of that HTML can get pretty big */
+
+
+/* inline CSS */
+/* With this method you can add style directly to HTML elements, though this method isn't recommended
+Yeah because of that you could add unique styles for a single elements but this way isn't recommended because:
+- it can quickly become pretty messy once you start adding a lot of declarations to a single element, causing 
+HTML file to become unnecessarily bloated
+- If you want many elements to have the same style, you would have to copy and paste the same style to each
+invidual element, causing lots of unnecessary repetition and more bloat
+- Any inline CSS will override the other two methods, which can cause unexpected results */
