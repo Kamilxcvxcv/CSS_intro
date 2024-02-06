@@ -1,0 +1,52 @@
+/* cascade is what determines which rules actually get applied to our HTML. 
+There are 3 different factors that the cascade uses to detemine this.*/
+
+/* Specificity - CSS declaration that is more specific will take precedence over
+less specific ones. Inline styles have the highest specificity compared to selectors
+while each type of selector has its own specificity level that contributes to how specific
+a declaration is:
+- ID selectors (most specific)
+- Class selectors
+- Type selectors
+Specificity will only be taken into account when an element has multiple, conflicting declarations
+targeting it, sort like a tie-breaker. When there is no declarations with selector of higher specificity
+, a rule with a greater number of selectors of the same type will take precedence over another rule with 
+fewer selectors of the same type */
+
+/* inheritance */
+/* refers to certain CSS properties that, when applied to an element are inherited by the element descendants
+even if we don't explicitly write a rule for thise descendants. Typography-based properties are usually inherited
+while most other properties aren't, exception to this is when directly targeting an element, as this always beats inheritance
+ */
+ <!-- index.html -->
+
+<div id="parent">
+  <div class="child"></div>
+</div>
+/* styles.css */
+
+#parent {
+    color: red;
+  }
+  
+  .child {
+    color: blue;
+  }
+  /* despite the parent element having higher specificity with an ID, the child element would have color blue style 
+  since the declaration directly targets it, while color red from the parent is only inherited */
+  /* rule order */
+  /* let's say after every other factor has been taken into account there are still multiple conflicting rules targeting an element
+  How does the cascade determine which rule to apply? */
+  /* styles.css */
+
+.alert {
+    color: red;
+  }
+  
+  .warning {
+    color: yellow;
+  }
+  /* for an element that has both the alert and warning class, the cascade would run through every other factor, including inheritance
+  (none here) and specificity (neither rule is smore specific  than the other). Since the .warning rule was the last one defined, and
+  no other factor was able to determine which rule apply, it's the one that gets applied to the element. */
+  
